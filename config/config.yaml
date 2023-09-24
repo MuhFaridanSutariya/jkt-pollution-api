@@ -1,0 +1,10 @@
+#INITIAL SETTINGS
+experiment_name: jakarta_pollution_classification
+
+# Model
+model:
+  model_directory: models/model2.pkl
+
+# Encoder Stasiun
+encoder:
+  encoder_directory: models/ohe_stasiun.pkl
