@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi import Request
-
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 import os
 import joblib
@@ -8,7 +9,6 @@ import numpy as np
 import yaml
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
 config_path = os.path.join(current_dir, 'config', 'config.yaml')
 
 # Load the config from the specified file path
@@ -17,6 +17,16 @@ with open(config_path, 'r') as config_file:
 
 
 app = FastAPI()
+
+# Configure CORS middleware
+origins = ["http://127.0.0.1:5500"] 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 def load_model():
     try:
